@@ -9,12 +9,14 @@ import NotFound from "../Components/CommonPages/Pages/NotFound";
 import Loader from "../Utils/Loader";
 import ErrorBoundary from "../Utils/ErrorBoundary";
 import DutyLayout from "../Components/DriverPages/DutyLayout";
-import Driverdetails from "../Components/DriverPages/Pages/driverdetails";
-import EarningsTracker from "../Components/DriverPages/Pages/EarningsTracker";
+import Driverdetails from "../Components/DriverPages/Pages/Driver/DriverDetails";
+import EarningsTracker from "../Components/DriverPages/Pages/Rides/EarningsTracker";
 import Notifications from "../Components/DriverPages/Pages/Notifications";
 import NavigationMap from "../Components/DriverPages/Pages/OnDuty/NavigationMap";
-import ProfileManagement from "../Components/DriverPages/Pages/ProfileManagement"
-import TripManagement from "../Components/DriverPages/Pages/OnDuty/TripManagement"
+import ProfileManagement from "../Components/DriverPages/Pages/Profile/ProfileManagement"
+import RideManagement from "../Components/DriverPages/Pages/Rides/RideManagement"
+import RideHistory from "../Components/DriverPages/Pages/Rides/RideHistory";
+import BookingDetails from "../Components/AdminPages/Pages/DetailsPages/BookingDetails";
 
 // Lazy-loaded components
 const Home = lazy(() => import("../Components/CommonPages/Pages/Home"));
@@ -28,7 +30,6 @@ const MailSentSuccess = lazy(() => import("../Components/Auth/MailSentSuccess ")
 
 // User Pages
 const ManageAccount = lazy(() => import('../Components/UserPages/Pages/Profiles/Manage_account'));
-const Settings = lazy(() => import('../Components/UserPages/Pages/Profiles/Settings'));
 const Support = lazy(() => import('../Components/UserPages/Pages/Profiles/Support'));
 const Wallet = lazy(() => import('../Components/UserPages/Pages/Profiles/Wallet'));
 const MyTrips = lazy(() => import('../Components/UserPages/Pages/Mytrips'));
@@ -43,9 +44,9 @@ const ForgotPassword = lazy(() => import("../Components/Auth/ForgotPassword"));
 const OtpVerification = lazy(() => import("../Components/Auth/OtpVerification"));
 
 // Driver Pages
-const Driver = lazy(() => import("../Components/DriverPages/Pages/Driver"));
+const Driver = lazy(() => import("../Components/DriverPages/Pages/Driver/Driver"));
 const DriverApplicationForm = lazy(() => import("../Components/DriverPages/Pages/Form/DriverApplicationForm"));
-const ProfileSettings = lazy(() => import("../Components/DriverPages/Pages/ProfileSettings"));
+const ProfileSettings = lazy(() => import("../Components/DriverPages/Pages/Profile/ProfileSettings"));
 const SuccessPage = lazy(() => import("../Components/DriverPages/Pages/SuccessPage"));
 
 //Duty Pages
@@ -105,7 +106,8 @@ const AppRoutes = () => {
         { path: "profile", element: <Profile /> },
         { path: "settings", element: <AdminSettings /> },
         { path: "user-details", element: <UserDetails /> },
-        { path: "driver-details", element: <DriverDetails /> },
+        { path: "booking-details", element: <BookingDetails /> }, 
+        { path: "driver-details/:driverId", element: <DriverDetails /> },
       ],
     },
     {
@@ -128,8 +130,10 @@ const AppRoutes = () => {
         { path: "earnings", element: <EarningsTracker /> }, 
         { path: "navigation-map", element: <NavigationMap /> }, 
         { path: "profile", element: <ProfileManagement /> }, 
-        { path: "trip-management", element: <TripManagement /> }, 
+        { path: "ride-management", element: <RideManagement /> }, 
         { path: "notifications", element: <Notifications /> },
+        { path: "ride-history", element: <RideHistory/> },
+
       
       ],
     },
@@ -145,7 +149,6 @@ const AppRoutes = () => {
         { path: "rental-form", element: <RentalForm /> },
         { path: "mytrips", element: <MyTrips /> },
         { path: "profiles/manage_account", element: <ManageAccount /> },
-        { path: "profiles/settings", element: <Settings /> },
         { path: "profiles/support", element: <Support /> },
         { path: "profiles/wallet", element: <Wallet /> },
       ],
